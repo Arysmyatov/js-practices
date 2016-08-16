@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<meta charset="UTF-8">
+    	<title>js-practices-modul</title>
+    </head>
+    <body>
+        <script src="app.js"></script>    
+        <script src="app.run.js"></script>    
+        <script src="app.walk.js"></script>    
+        <script>
+            (function() {
+                var person = "Joe";
+                App("run", "walk" , function (box) {
+                    box.slowRunning(person);
+                    box.simpleWalk(person);
+                });     
+            })()
+        </script>
+    </body>
+</html>
