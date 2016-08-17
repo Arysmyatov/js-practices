@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Inheritance</title>
+</head>
+<body>
+	<script>
+		function Sound(name) {
+			this.name = name || "";
+		}
+
+		Sound.prototype.play = function() {
+			alert("Sound " + this.name + " is playing");
+		}
+
+		function inherit(parent, child)
+		{
+			var F = function() {};
+			F.prototype = parent.prototype;
+			child.prototype = new F();
+		}
+
+		ChildSound = function() {
+			Sound.apply(this, arguments);
+		}
+
+		inherit(Sound, ChildSound);
+
+		var chSound = new ChildSound("simple bit");
+		chSound.play();
+
+	</script>
+</body>
+</html>

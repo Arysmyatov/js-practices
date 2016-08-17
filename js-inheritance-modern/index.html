@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS Inheritance - Modern style</title>
+</head>
+<body>
+	<script>
+
+        function extendDeep(parent, child) {
+            var i,
+                toString = Object.prototype.toString,
+                aStr = "[object Array]";
+
+            child = child || {};
+
+            for (i in parent) {
+                if (parent.hasOwnProperty(i)) {
+                    if (typeof parent[i] == "object") {
+                        child[i] = (toString.call(parent[i]) == aStr) ? [] : {};
+                        extendDeep(parent[i], child[i]);
+                    }
+                    else {
+                        child[i] = parent[i];
+                    }
+                }
+            }
+            return child;
+        }
+
+        var sound = {
+            library: "",
+            name: "",
+            getLbraryAndName: function() {
+                return this.library + " - " + this.name;
+            }
+        };
+
+        var childSound = {
+            displayLibSound: function() {
+                document.write("Library and Sound name: " + this.getLbraryAndName() + "<br/>"); 
+            }
+        };
+
+		extendDeep(sound, childSound);
+        childSound.name = "click";
+        childSound.library = "interface";
+        childSound.displayLibSound();
+
+	</script>
+</body>
+</html>
